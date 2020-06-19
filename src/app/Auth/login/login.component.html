@@ -1,0 +1,48 @@
+<div class="container">
+   <div class="row">
+      <div class="col-md-5 mx-auto">
+         <div id="first">
+            <div class="myform form ">
+               <div class="logo mb-3">
+                  <div class="col-md-12 text-center">
+                     <h1>Login</h1>
+                  </div>
+               </div>
+               <form (ngSubmit)="submit(f)" #f="ngForm">
+                  <div class="form-group">
+                     <label for="exampleInputEmail1">Email address</label>
+                     <input type="email" name="email" required class="form-control" id="email"
+                        [(ngModel)]="userLoginDetails.email" placeholder="abc@gmail.com" #email="ngModel">
+                     <span class="error-handler" *ngIf="!email.valid && email.touched">
+                        Please Enter Email Address
+                     </span>
+                  </div>
+                  <div class="form-group">
+                     <label for="exampleInputEmail1">Password</label>
+                     <input type="password" name="password" id="password" class="form-control"
+                        [(ngModel)]="userLoginDetails.password" placeholder="Enter Password" #password="ngModel"
+                        minlength="6" required>
+                     <span class="hint">{{password.value?.length}}/6</span>
+                     <span class="error-handler" *ngIf="password.touched && password.value?.length < 6">
+                        Please Enter Password of Minimum 6 characters long
+                     </span>
+                  </div>
+                  <div class="col-md-12 text-center ">
+                     <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm"
+                        [disabled]="!f.valid">Login</button>
+                     <button type="reset" (click)="reset(f)">Reset</button>
+                  </div>
+
+                  <div class="form-group">
+                     <p class="text-center">Don't have account? <a routerLink="/signup" class="btn btn-link">SignUp
+                           here</a></p>
+                  </div>
+               </form>
+
+            </div>
+         </div>
+
+
+      </div>
+   </div>
+</div>

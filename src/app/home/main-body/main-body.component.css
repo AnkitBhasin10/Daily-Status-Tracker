@@ -1,0 +1,35 @@
+.full-width {
+  width: 75%;
+  padding-left: 20px;
+}
+
+.addButton:hover {
+  background-color: #2a9df4;
+}
+
+.save {
+  margin-left: 15px;
+}
+
+.save:hover {
+  background-color: #2af598;
+}
+
+.warn:hover {
+  background-color: #e3493b;
+}
+
+.warn {
+  background-color: #fff;
+  margin-left: 10px;
+}
+
+.addButton,
+.save {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.main-body-container {
+  margin-top: 20px;
+}
