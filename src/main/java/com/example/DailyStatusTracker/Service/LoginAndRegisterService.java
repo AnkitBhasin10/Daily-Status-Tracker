@@ -1,17 +1,31 @@
 package com.example.DailyStatusTracker.Service;
 
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.DailyStatusTracker.Model.UserLoginAndRegister;
+import com.example.DailyStatusTracker.Repository.LoginAndRegisterRepositoryDAO;
+
 
 @Service
 public class LoginAndRegisterService {
+	
+	@Autowired
+	private LoginAndRegisterRepositoryDAO repo;
 
-	public boolean userLoginValidation(String email,String password) {
-		//code to check from repository if username and password matches
+	public UserLoginAndRegister userLoginValidation(String email) {
 		
-		if(email.equalsIgnoreCase("ankit.original@gmail.com") && password.equalsIgnoreCase("123456")) {
-			return true;
-		}
-		
-		return false;
+		return repo.getLoginAuthorization(email);
 	}
+	
+	public UserLoginAndRegister userRegistration(UserLoginAndRegister userRegister) {
+		
+		if(userRegister.getUserId() == null) {
+			userRegister.setUserId(UUID.randomUUID().toString());
+		}
+		return repo.createUser(userRegister);
+	}
+
 }

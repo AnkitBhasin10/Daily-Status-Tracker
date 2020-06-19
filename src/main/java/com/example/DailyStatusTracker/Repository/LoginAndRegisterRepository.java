@@ -1,5 +1,8 @@
 package com.example.DailyStatusTracker.Repository;
 
-public class LoginAndRegisterRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
+import com.example.DailyStatusTracker.Model.UserLoginAndRegister;
+
+public interface LoginAndRegisterRepository extends MongoRepository<UserLoginAndRegister,String>{
 
 }

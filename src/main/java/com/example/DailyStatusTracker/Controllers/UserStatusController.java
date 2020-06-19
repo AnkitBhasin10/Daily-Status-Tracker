@@ -4,29 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.DailyStatusTracker.Model.UserLoginAndRegister;
+
 import com.example.DailyStatusTracker.Model.UserStatusModel;
-import com.example.DailyStatusTracker.Service.LoginAndRegisterService;
 import com.example.DailyStatusTracker.Service.UserStatusService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class LoginAndRegisterController {
-	
-	@Autowired
-	LoginAndRegisterService lars;
-	
-	@PostMapping("/login")
-	public UserLoginAndRegister userLogin(@RequestBody UserLoginAndRegister userLogin) {
-		
-		return lars.userLoginValidation(userLogin.getEmail());
-	}
-	
-	@PostMapping("/register")
-	public UserLoginAndRegister userRegistration(@RequestBody UserLoginAndRegister userRegister) {
-		
-		return lars.userRegistration(userRegister);
-	}
+@RequestMapping("/status")
+public class UserStatusController {
 
+	@Autowired
+	private UserStatusService userStatusService;
+	
+	@PostMapping("/saveStatus")
+	public void saveStatus(@RequestBody UserStatusModel userStatus) {
+		System.out.println(userStatus);
+		userStatusService.saveUserStatusData(userStatus);
+	}
+	
+	@PostMapping("/getUserStatusData")
+	public UserStatusModel getUserStatusData(@RequestBody String userId) {
+		return userStatusService.getUserStatusData(userId);
+	}
 }

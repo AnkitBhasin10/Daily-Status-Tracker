@@ -1,26 +1,32 @@
 package com.example.DailyStatusTracker.Model;
 
-import java.util.UUID;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class UserRegister {
+@Document(collection="users")
+public class UserLoginAndRegister {
 
-	private UUID userId;
-	private String userName;
+	@Id
+	private String userId;
+	@Indexed(unique = true)
+	private String email;
 	private String password;
 	private String designation;
 	private String companyName;
 	
-	public UUID getUserId() {
+	
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(UUID userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getUserName() {
-		return userName;
+	public String getEmail() {
+		return email;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getPassword() {
 		return password;
@@ -42,7 +48,7 @@ public class UserRegister {
 	}
 	@Override
 	public String toString() {
-		return "UserRegister [userId=" + userId + ", userName=" + userName + ", password=" + password + ", designation="
+		return "UserRegister [userId=" + userId + ", email=" + email + ", password=" + password + ", designation="
 				+ designation + ", companyName=" + companyName + "]";
 	}
 	
