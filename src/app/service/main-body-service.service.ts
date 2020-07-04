@@ -1,5 +1,5 @@
-import { UserStatus } from './../Model/UserStatus';
-import { HttpClient } from '@angular/common/http';
+import { UserStatus, UserStatusDataModel, MonthlyData } from './../Model/UserStatus';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -11,11 +11,11 @@ export class MainBodyServiceService {
 
   constructor(private http: HttpClient) { }
 
-  saveStatusData(userStatus: UserStatus) {
-    console.log(userStatus);
+  saveStatusData(id: string, data: MonthlyData[]) {
+    console.log(data);
     return this.http.post(this.url + '/saveStatus', {
-      date: userStatus.date,
-      status: userStatus.status
+      userId: id,
+      monthly: data
     });
   }
 
@@ -26,3 +26,4 @@ export class MainBodyServiceService {
   }
 }
 
+//key[0].toLocaleString('default', { month: 'long' }) + ' ' + (new Date().getFullYear()).toString()

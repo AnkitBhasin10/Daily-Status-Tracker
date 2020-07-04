@@ -1,13 +1,5 @@
 <div class="main-body-container">
   <form [formGroup]="statusForm">
-    <mat-form-field>
-      <mat-label>Month and Year</mat-label>
-      <input matInput [matDatepicker]="dp" [formControl]="date">
-      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-      <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
-        (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
-      </mat-datepicker>
-    </mat-form-field>
     <div formArrayName="items">
       <div *ngFor="let Form of DailyStatusForm.controls;let i=index" [formGroupName]="[i]">
         <mat-form-field>

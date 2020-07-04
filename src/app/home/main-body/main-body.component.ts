@@ -1,3 +1,4 @@
+import { UserStatusDataModel, MonthlyData } from './../../Model/UserStatus';
 import { CommonService } from './../../service/common.service';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -15,6 +16,7 @@ export class MainBodyComponent implements OnInit {
   date: Date;
   status: string;
   userId: string;
+  userData: MonthlyData[] = [];
 
   constructor(private fb: FormBuilder, private userStatusService: MainBodyServiceService, private datePipe: DatePipe,
     private commonService: CommonService) { }
@@ -55,16 +57,16 @@ export class MainBodyComponent implements OnInit {
   }
 
   onSave() {
-    this.DailyStatusForm.controls.map(data => {
-      this.date = data.value.date;
-      this.status = data.value.status;
-      this.userStatusService.saveStatusData({
-        date: this.date,
-        status: this.status,
-        userId: this.userId
-      }).subscribe(res => {
-
+    for (let i = 0; i < this.DailyStatusForm.controls.length; i++) {
+      this.userData.push({
+        monthAndYear: this.DailyStatusForm.controls[i].value.date.toLocaleString('default', { month: 'long' }) + ' ' + (new Date().getFullYear()).toString(),
+        userStatusData: [{
+          date: this.DailyStatusForm.controls[i].value.date,
+          status: this.DailyStatusForm.controls[i].value.status
+        }]
       });
-    });
+    }
+
+    this.userStatusService.saveStatusData(this.userId, this.userData).subscribe(res => { });
   }
 }
