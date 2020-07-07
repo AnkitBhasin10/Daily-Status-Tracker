@@ -12,7 +12,7 @@ public class UserStatusModel {
 	private String userId;
 	
 	private List<MonthlyData> monthly;
-
+	
 	public List<MonthlyData> getMonthly() {
 		return monthly;
 	}

@@ -1,5 +1,9 @@
 package com.example.DailyStatusTracker.Controllers;
 
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +29,7 @@ public class UserStatusController {
 	}
 	
 	@PostMapping("/getUserStatusData")
-	public UserStatusModel getUserStatusData(@RequestBody String userId) {
+	public List<UserStatusModel> getUserStatusData(@RequestBody String userId) {
 		return userStatusService.getUserStatusData(userId);
 	}
 }

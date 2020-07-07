@@ -2,15 +2,18 @@ package com.example.DailyStatusTracker.Model;
 
 import java.util.Date;
 
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.stereotype.Component;
+
 public class UserStatusDataModel {
 
-	private Date date;
+	private String date;
 	private String status;
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public String getStatus() {

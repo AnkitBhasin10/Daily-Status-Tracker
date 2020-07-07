@@ -2,9 +2,12 @@ package com.example.DailyStatusTracker.Model;
 
 import java.util.List;
 
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.stereotype.Component;
+
 public class MonthlyData {
 
-	private String monthAndyear;
+	private String monthAndYear;
 	private List<UserStatusDataModel> userStatusData;
 
 	public List<UserStatusDataModel> getUserStatusData() {
@@ -15,11 +18,13 @@ public class MonthlyData {
 		this.userStatusData = userStatusData;
 	}
 
-	public String getMonthAndyear() {
-		return monthAndyear;
+	public String getMonthAndYear() {
+		return monthAndYear;
 	}
 
-	public void setMonthAndyear(String monthAndyear) {
-		this.monthAndyear = monthAndyear;
+	public void setMonthAndYear(String monthAndYear) {
+		this.monthAndYear = monthAndYear;
 	}
+
+	
 }

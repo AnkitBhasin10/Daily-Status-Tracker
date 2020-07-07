@@ -1,5 +1,7 @@
 package com.example.DailyStatusTracker.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,12 @@ public class UserStatusService {
 	@Autowired
 	private UserStatusDAO repo;
 
-	public UserStatusModel saveUserStatusData(UserStatusModel userStatusData) {
+	public void saveUserStatusData(UserStatusModel userStatusData) {
 		
-		return repo.saveStatus(userStatusData);
+		repo.saveStatus(userStatusData);
 	}
 	
-	public UserStatusModel getUserStatusData(String userId) {
+	public List<UserStatusModel> getUserStatusData(String userId) {
 		
 		if(userId != null) {
 			return repo.getStatusData(userId);
